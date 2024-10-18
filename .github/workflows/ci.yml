@@ -2,7 +2,14 @@ name: CI
 on: [push]
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macOS-latest
+        arch:
+          - x64
     steps:
     - uses: actions/checkout@v4
     - name: Setup tmate session
